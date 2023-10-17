@@ -1,38 +1,59 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+    background: rgb(34, 34, 34);
+    color: rgb(212, 212, 212);
+    font-family: 'Roboto', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header{
+    height: 20px;
+    background-color: rgb(75, 75, 75);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.footer{
+    height: 40px;
+    background-color: rgb(15, 15, 15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    font-size: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.productList{
+    display: grid;  
+    grid-template-columns: repeat(3, calc(40%));
+    justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.productItem{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 170px;
+    padding: 10px;
+    border: 2px solid rgb(212, 212, 212);
+    box-shadow: 5px 5px 5px black;
 }
+
+.starList{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.active {
+	color: orange;
+}
+

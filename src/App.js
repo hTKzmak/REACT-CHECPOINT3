@@ -1,24 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import ProductList from './components/ProductList';
+import { Context } from './context/Context';
+
+import { useEffect, useState, useRef } from "react"
 
 function App() {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data.products))
+  }, []);
+
+  let scrollFooterRef = useRef()
+
+  function footerScroll() {
+    scrollFooterRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  function doubleDelete(id) {
+    let removedTasks = products.filter((elem => elem.id !== id))
+    setProducts(removedTasks)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={{products, doubleDelete}}>
+      <div>
+        <Header footerScroll={footerScroll} />
+        <ProductList />
+        <Footer ref={scrollFooterRef} />
+      </div>
+    </Context.Provider>
   );
 }
 
